@@ -1,0 +1,15 @@
+{
+    "name": "bwoodmansee/fuel-sdk-php",
+    "description": "ExactTarget Fuel SDK for PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brandon Woodmansee",
+            "email": "woodmansee@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+
+    }
+}
