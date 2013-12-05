@@ -9,7 +9,14 @@
         }
     ],
     "minimum-stability": "stable",
+    "autoload": {
+            "files": ["ET_Client.php"]
+    },
     "require": {
-
+        "php": ">=5.2.3",
+        "ext-mcrypt": "*",
+        "ext-openssl": "*",
+        "ext-soap": "*"
+        "ext-curl": "*"
     }
 }
