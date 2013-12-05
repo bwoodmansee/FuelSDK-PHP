@@ -16,7 +16,7 @@
         "php": ">=5.2.3",
         "ext-mcrypt": "*",
         "ext-openssl": "*",
-        "ext-soap": "*"
+        "ext-soap": "*",
         "ext-curl": "*"
     }
 }
