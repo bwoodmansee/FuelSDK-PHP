@@ -8,7 +8,6 @@
             "email": "woodmansee@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
     "autoload": {
             "files": ["ET_Client.php"]
     },
