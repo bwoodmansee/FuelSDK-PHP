@@ -149,8 +149,8 @@ class ET_Client extends SoapClient {
 			
 			// sys_get_temp_dir() does not return a trailing slash on all OS's
 			// see http://php.net/manual/en/function.sys-get-temp-dir.php#80690
-			if ('/' !== substr($tmp, -1)) {
-				$tmp .= '/';
+			if ('/' !== substr($tmpPath, -1)) {
+				$tmpPath .= '/';
 			}
 		}
 		
@@ -173,7 +173,7 @@ class ET_Client extends SoapClient {
 		return curl_getinfo($curl, CURLINFO_FILETIME);
 	}
 				
-	function __doRequest($request, $location, $saction, $version) {
+	function __doRequest($request, $location, $saction, $version, $one_way = 0) {
 		$doc = new DOMDocument();
 		$doc->loadXML($request);
 		
