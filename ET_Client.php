@@ -10,20 +10,12 @@ class ET_Client extends SoapClient {
 		
 	function __construct($getWSDL = false, $debug = false, $params = null) {	
 		$tenantTokens = array();
-		$config = @include 'config.php';
-		if ($config){
-			$this->wsdlLoc = $config['defaultwsdl'];
-			$this->clientId = $config['clientid'];
-			$this->clientSecret = $config['clientsecret'];
-			$this->appsignature = $config['appsignature'];
-		} else {
-			if ($params && array_key_exists('defaultwsdl', $params)){$this->wsdlLoc = $params['defaultwsdl'];}
-			else {$this->wsdlLoc = "https://webservice.exacttarget.com/etframework.wsdl";}
-			if ($params && array_key_exists('clientid', $params)){$this->clientId = $params['clientid'];}
-			if ($params && array_key_exists('clientsecret', $params)){$this->clientSecret = $params['clientsecret'];}
-			if ($params && array_key_exists('appsignature', $params)){$this->appsignature = $params['appsignature'];}
-		}
-		
+        if ($params && array_key_exists('defaultwsdl', $params)){$this->wsdlLoc = $params['defaultwsdl'];}
+        else {$this->wsdlLoc = "https://webservice.exacttarget.com/etframework.wsdl";}
+        if ($params && array_key_exists('clientid', $params)){$this->clientId = $params['clientid'];}
+        if ($params && array_key_exists('clientsecret', $params)){$this->clientSecret = $params['clientsecret'];}
+        if ($params && array_key_exists('appsignature', $params)){$this->appsignature = $params['appsignature'];}
+
 		$this->debugSOAP = $debug;
 		
 		if (!property_exists($this,'clientId') || is_null($this->clientId) || !property_exists($this,'clientSecret') || is_null($this->clientSecret)){
@@ -149,8 +141,8 @@ class ET_Client extends SoapClient {
 			
 			// sys_get_temp_dir() does not return a trailing slash on all OS's
 			// see http://php.net/manual/en/function.sys-get-temp-dir.php#80690
-			if ('/' !== substr($tmp, -1)) {
-				$tmp .= '/';
+			if ('/' !== substr($tmpPath, -1)) {
+				$tmpPath .= '/';
 			}
 		}
 		
@@ -173,7 +165,7 @@ class ET_Client extends SoapClient {
 		return curl_getinfo($curl, CURLINFO_FILETIME);
 	}
 				
-	function __doRequest($request, $location, $saction, $version) {
+	function __doRequest($request, $location, $saction, $version, $one_way = 0) {
 		$doc = new DOMDocument();
 		$doc->loadXML($request);
 		
